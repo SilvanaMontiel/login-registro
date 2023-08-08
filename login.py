@@ -15,8 +15,8 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 user_input = html.Div(
     [
-        dbc.Label("Usuario:", html_for="example-user"),
-        dbc.Input(type="user", id="example-user", placeholder="Ingrese su usuario"),
+        dbc.Label("Correo:", html_for="example-usur"),
+        dbc.Input(type="email", id="example-user", placeholder="Ingrese su E-mail"),
         
     ],
     className="mb-3",
@@ -45,7 +45,6 @@ card = dbc.Card(
                 html.H4("Iniciar sesion ", className="card-title text-center"),
                 html.Div(form),
                 dbc.Button("Iniciar Sesión", color="primary", className="m-auto d-flex justify-content-center", href="/Home"),
-                dbc.CardLink("Registrarse", href="/Registro", className="text-center d-flex justify-content-end mt-3 ml-auto"),
             ]
         ),
     ],
@@ -78,14 +77,14 @@ app.layout = dbc.Container([
             dbc.Form([
                dbc.Container([
     dcc.Location(id="url", refresh=False),
-    html.Div(id="page-content"),
+    html.Div(id="page-content"), centered_card
 ])
             ])
         ]
     )
 ])
 
-@app.callback(
+'''@app.callback(
     Output("page-content", "children"),
     [Input("url", "pathname")],
 )
@@ -94,7 +93,7 @@ def display_page(pathname):
         from registro import pantalla_de_registro
         return pantalla_de_registro()
     else:
-        return centered_card
+        return centered_card'''
 
 if __name__ == "__main__":
     app.run_server(debug=True)
